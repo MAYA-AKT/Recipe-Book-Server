@@ -64,6 +64,17 @@ async function run() {
             const result = await recipeCollection.find({'user.email':email}).toArray();
             res.send(result);
             
+        });
+
+        app.put('/recipe-update/:id',async(req,res)=>{
+            const id = req.params.id;
+            const query = {_id:new ObjectId(id)};
+            const updateRecipe = req.body;
+            const updateDoct={
+                $set:updateRecipe
+            }
+            const result = await recipeCollection.updateOne(query,updateDoct);
+            res.send(result);
         })
 
 
