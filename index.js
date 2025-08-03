@@ -1,4 +1,4 @@
-// XEfVIkwK2lzGUsIb
+
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
 import express from 'express';
 import cors from 'cors';
@@ -14,7 +14,7 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-    res.send('Recipe Book server is getting hotter');
+    res.send('Recipe Book server');
 });
 
 
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.7ngg3kc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -35,7 +35,7 @@ async function run() {
     try {
 
         await client.connect();
-        //  const coffeesCollection = client.db('coffeedb').collection('coffees');
+        
         const recipeCollection = client.db('recipedb').collection('recipes');
 
         app.post('/recipe', async (req, res) => {
@@ -72,7 +72,7 @@ async function run() {
 
 
     } finally {
-        // Ensures that the client will close when you finish/error
+        
         // await client.close();
     }
 }
