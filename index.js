@@ -38,6 +38,18 @@ async function run() {
         // create db
         const recipeCollection = client.db('recipedb').collection('recipes');
 
+        // top recipes 
+        app.get('/top-recipes',async(req,res)=>{
+            const topRecipes = await recipeCollection
+            .find()
+            .sort({likes:-1})
+            .limit(6)
+            .toArray();
+
+           res.send(topRecipes);
+        })
+
+
         //  all the recipe data from db
         app.get('/all-recipe', async (req, res) => {
             const cursor = recipeCollection.find();
