@@ -93,16 +93,14 @@ async function run() {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) };
             const likes = req.body;
-            console.log(likes);
-            
-            // const updatedoct = {
-            //     $set:likes 
-            // }
-            // const result = await recipeCollection.updateOne(query, updatedoct,{upsert:true});
-            // res.send(result);
+
+            const updatedDoc = {
+                $set: likes
+            };
+
+            const result = await recipeCollection.updateOne(query, updatedDoc, { upsert: true });
+            res.send(result);
         });
-
-
 
 
 
