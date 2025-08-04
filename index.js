@@ -87,7 +87,21 @@ async function run() {
             const query = { _id: new ObjectId(id) };
             const result = await recipeCollection.deleteOne(query);
             res.send(result);
-        })
+        });
+
+        app.patch('/like-update/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const likes = req.body;
+            console.log(likes);
+            
+            // const updatedoct = {
+            //     $set:likes 
+            // }
+            // const result = await recipeCollection.updateOne(query, updatedoct,{upsert:true});
+            // res.send(result);
+        });
+
 
 
 
