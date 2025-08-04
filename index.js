@@ -79,6 +79,14 @@ async function run() {
             }
             const result = await recipeCollection.updateOne(query, updatedoct);
             res.send(result);
+        });
+
+        // delete my recipe 
+        app.delete('/recipe-delete/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await recipeCollection.deleteOne(query);
+            res.send(result);
         })
 
 
